@@ -5,8 +5,20 @@ namespace WorkflowProcessingModel.Algorithm
 {
     class BatchMachineAssociation
     {
-        Batch CurrentBatch { get; set; }
-        Machine CurrentMachine { get; set; }
-        DateTime AssociatedTime { get; set; }
+        public Batch CurrentBatch { get; set; }
+        public Machine CurrentMachine { get; set; }
+        public DateTime StartAssociatedTime { get; set; }
+        public DateTime EndAssociatedTime { get; set; }
+
+        public bool IsAssociatedTimeValid()
+        {
+            return StartAssociatedTime < EndAssociatedTime;
+        }
+
+        public bool IsBlockedBy(BatchMachineAssociation OtherBatchMachineAssociation)
+        {
+            return !this.Equals(OtherBatchMachineAssociation) && ((OtherBatchMachineAssociation.EndAssociatedTime < StartAssociatedTime)
+                                                              || (OtherBatchMachineAssociation.StartAssociatedTime > EndAssociatedTime));
+        }
     }
 }

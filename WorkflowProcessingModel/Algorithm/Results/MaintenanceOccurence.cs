@@ -6,6 +6,7 @@ namespace WorkflowProcessingModel.Algorithm.Results
     class MaintenanceOccurence
     {
         Machine MaintainedMachines { get; set; }
-        DateTime MaintenanceTime { get; set; }
+        DateTime StartMaintenanceTime { get; set; }
+        DateTime EndMaintenanceTime { get; set; }
     }
 }
