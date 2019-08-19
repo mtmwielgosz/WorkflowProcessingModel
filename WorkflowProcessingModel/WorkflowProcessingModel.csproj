@@ -43,6 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithm\Results\BatchMachineAssociation.cs" />
+    <Compile Include="Algorithm\Parameters\OptimisationObjective.cs" />
+    <Compile Include="Algorithm\Parameters\Constraint.cs" />
+    <Compile Include="Algorithm\Parameters\MachineEnvironment.cs" />
+    <Compile Include="Algorithm\IScheduling.cs" />
+    <Compile Include="Algorithm\Results\MaintenanceOccurence.cs" />
     <Compile Include="Model\Batch.cs" />
     <Compile Include="Model\Job.cs" />
     <Compile Include="Model\Machine.cs" />
