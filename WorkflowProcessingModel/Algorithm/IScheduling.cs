@@ -7,7 +7,7 @@ namespace WorkflowProcessingModel.Algorithm
     interface IScheduling
     {
 
-        List<BatchMachineAssignation> BatchMachineAssignationsResult { get; set; }
+        List<BatchMachineAssociation> BatchMachineAssociationsResult { get; set; }
         List<MaintenanceOccurence> MaintenanceOccurencesResult { get; set; }
         Dictionary<Material, int> ExtraNeededMaterialsResult { get; set; }
 

@@ -3,7 +3,7 @@ using WorkflowProcessingModel.Model;
 
 namespace WorkflowProcessingModel.Algorithm
 {
-    class BatchMachineAssignation
+    class BatchMachineAssociation
     {
         Batch CurrentBatch { get; set; }
         Machine CurrentMachine { get; set; }
