@@ -49,19 +49,20 @@
     <Compile Include="Algorithm\Parameters\MachineEnvironment.cs" />
     <Compile Include="Algorithm\IScheduling.cs" />
     <Compile Include="Algorithm\Results\MaintenanceOccurence.cs" />
-    <Compile Include="Model\Batch.cs" />
-    <Compile Include="Model\Job.cs" />
-    <Compile Include="Model\Machine.cs" />
-    <Compile Include="Model\Material.cs" />
-    <Compile Include="Model\Move.cs" />
-    <Compile Include="Model\Operation.cs" />
-    <Compile Include="Model\Setup.cs" />
-    <Compile Include="Model\Storehouse.cs" />
+    <Compile Include="Model\SubElements\Batch.cs" />
+    <Compile Include="Model\SubElements\Family.cs" />
+    <Compile Include="Model\SubElements\Job.cs" />
+    <Compile Include="Model\SubElements\Machine.cs" />
+    <Compile Include="Model\SubElements\Material.cs" />
+    <Compile Include="Model\ModelAssociation.cs" />
+    <Compile Include="Model\SubElements\Move.cs" />
+    <Compile Include="Model\SubElements\Operation.cs" />
+    <Compile Include="Model\SubElements\Setup.cs" />
+    <Compile Include="Model\SubElements\Storehouse.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validator\IValidator.cs" />
     <Compile Include="Validator\MainValidator.cs" />
-    <Compile Include="Validator\SubValidator\BatchMachineAssociationsTimesValid.cs" />
     <Compile Include="Validator\SubValidator\MachineNeverBlockedByMoreThanOneBatch.cs" />
   </ItemGroup>
   <ItemGroup>

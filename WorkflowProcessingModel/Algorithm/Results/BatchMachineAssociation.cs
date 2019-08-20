@@ -10,9 +10,17 @@ namespace WorkflowProcessingModel.Algorithm
         public DateTime StartAssociatedTime { get; set; }
         public DateTime EndAssociatedTime { get; set; }
 
-        public bool IsAssociatedTimeValid()
+        public BatchMachineAssociation(Batch currentBatch, Machine currentMachine, DateTime startAssociatedTime, DateTime endAssociatedTime)
         {
-            return StartAssociatedTime < EndAssociatedTime;
+            if (StartAssociatedTime >= EndAssociatedTime)
+            {
+                throw new InvalidOperationException(String.Format("startAssociatedTime ({0}) can't be later than endAssociatedTime ({1}).", startAssociatedTime, endAssociatedTime));
+            }
+
+            CurrentBatch = currentBatch ?? throw new ArgumentNullException(nameof(currentBatch));
+            CurrentMachine = currentMachine ?? throw new ArgumentNullException(nameof(currentMachine));
+            StartAssociatedTime = startAssociatedTime;
+            EndAssociatedTime = endAssociatedTime;
         }
 
         public bool IsBlockedBy(BatchMachineAssociation OtherBatchMachineAssociation)

@@ -6,9 +6,14 @@ namespace WorkflowProcessingModel.Algorithm
 {
     interface IScheduling
     {
+        /// <summary> input </summary>
+        ModelAssociation CurrentModel { get; set; }
 
+        /// <summary> main output (optimation result) </summary>
         List<BatchMachineAssociation> BatchMachineAssociationsResult { get; set; }
+        /// <summary> extra output </summary>
         List<MaintenanceOccurence> MaintenanceOccurencesResult { get; set; }
+        /// <summary> extra output </summary>
         Dictionary<Material, int> ExtraNeededMaterialsResult { get; set; }
 
         /// <summary>
