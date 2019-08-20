@@ -7,7 +7,7 @@ namespace WorkflowProcessingModel.Validate
     class MainValidator : IValidator
     {
         // TODO Add Validators
-        private List<IValidator> AllValidators = new List<IValidator> { new MachineNeverBlockedByMoreThanOneBatch() };
+        private List<IValidator> AllValidators = new List<IValidator> { new MachineNeverBlockedByMoreThanOneBatch(), new BatchMachineAssociationsTimesValid() };
 
         public bool Validate(List<BatchMachineAssociation> BatchMachineAssociationsResult)
         {
