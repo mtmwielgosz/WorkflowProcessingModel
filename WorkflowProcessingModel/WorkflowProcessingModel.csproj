@@ -49,6 +49,11 @@
     <Compile Include="Algorithm\Parameters\MachineEnvironment.cs" />
     <Compile Include="Algorithm\IScheduling.cs" />
     <Compile Include="Algorithm\Results\MaintenanceOccurence.cs" />
+    <Compile Include="Factory\MachineFactory.cs" />
+    <Compile Include="Factory\SetupForFamilyFactory.cs" />
+    <Compile Include="Factory\SetupForBatchFactory.cs" />
+    <Compile Include="Factory\FamilyFactory.cs" />
+    <Compile Include="Factory\IFactory.cs" />
     <Compile Include="Model\SubElements\Batch.cs" />
     <Compile Include="Model\SubElements\Family.cs" />
     <Compile Include="Model\SubElements\Job.cs" />
@@ -58,6 +63,8 @@
     <Compile Include="Model\SubElements\Move.cs" />
     <Compile Include="Model\SubElements\Operation.cs" />
     <Compile Include="Model\SubElements\Setup.cs" />
+    <Compile Include="Model\SubElements\SetupForBatch.cs" />
+    <Compile Include="Model\SubElements\SetupForFamily.cs" />
     <Compile Include="Model\SubElements\Storehouse.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
