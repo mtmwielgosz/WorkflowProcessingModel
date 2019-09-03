@@ -4,7 +4,7 @@
     {
         public Operation PreviousOperation { get; set; }
 
-        public SetupForBatch(Operation previousOperation, Machine currentMachine, double setupTime) : base(currentMachine, setupTime)
+        public SetupForBatch(Machine currentMachine, Operation previousOperation, int setupTime) : base(currentMachine, setupTime)
         {
             PreviousOperation = previousOperation;
         }

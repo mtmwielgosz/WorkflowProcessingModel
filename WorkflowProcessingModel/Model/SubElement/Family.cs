@@ -13,7 +13,7 @@ namespace WorkflowProcessingModel.Model.SubElements
         {
             Index = index;
             Name = name ?? throw new ArgumentNullException(nameof(name));
-            SetupTimes = setupTimes ?? throw new ArgumentNullException(nameof(setupTimes));
+            SetupTimes = setupTimes;
         }
     }
 }

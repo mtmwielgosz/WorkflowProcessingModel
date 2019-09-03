@@ -3,14 +3,14 @@ using WorkflowProcessingModel.Model;
 
 namespace WorkflowProcessingModel.Algorithm
 {
-    class BatchMachineAssociation
+    class BatchMachineAssignment
     {
         public Batch CurrentBatch { get; set; }
         public Machine CurrentMachine { get; set; }
         public DateTime StartAssociatedTime { get; set; }
         public DateTime EndAssociatedTime { get; set; }
 
-        public BatchMachineAssociation(Batch currentBatch, Machine currentMachine, DateTime startAssociatedTime, DateTime endAssociatedTime)
+        public BatchMachineAssignment(Batch currentBatch, Machine currentMachine, DateTime startAssociatedTime, DateTime endAssociatedTime)
         {
             if (StartAssociatedTime >= EndAssociatedTime)
             {
@@ -23,7 +23,7 @@ namespace WorkflowProcessingModel.Algorithm
             EndAssociatedTime = endAssociatedTime;
         }
 
-        public bool IsBlockedBy(BatchMachineAssociation OtherBatchMachineAssociation)
+        public bool IsBlockedBy(BatchMachineAssignment OtherBatchMachineAssociation)
         {
             return !this.Equals(OtherBatchMachineAssociation) && ((OtherBatchMachineAssociation.EndAssociatedTime < StartAssociatedTime)
                                                               || (OtherBatchMachineAssociation.StartAssociatedTime > EndAssociatedTime));

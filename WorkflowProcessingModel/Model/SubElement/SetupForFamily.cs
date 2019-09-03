@@ -4,7 +4,7 @@
     {
         public Family PreviousFamily { get; set; }
 
-        public SetupForFamily(Family previousFamily, Machine currentMachine, double setupTime) : base(currentMachine, setupTime)
+        public SetupForFamily(Machine currentMachine, Family previousFamily, int setupTime) : base(currentMachine, setupTime)
         {
             PreviousFamily = previousFamily;
         }
