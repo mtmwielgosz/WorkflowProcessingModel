@@ -17,7 +17,7 @@ namespace WorkflowProcessingModel.Model
             Index = index;
             MaterialsDemand = materialsDemand ?? throw new ArgumentNullException(nameof(materialsDemand));
             CapableMachinesWithProductionTime = capableMachinesWithProductionTime ?? throw new ArgumentNullException(nameof(capableMachinesWithProductionTime));
-            SetupTimes = setupTimes ?? throw new ArgumentNullException(nameof(setupTimes));
+            SetupTimes = setupTimes;
             TimesOfMovingSemiproducts = timesOfMovingSemiproducts ?? throw new ArgumentNullException(nameof(timesOfMovingSemiproducts));
         }
     }

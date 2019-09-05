@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace WorkflowProcessingModel.Factory
 {
@@ -34,6 +35,31 @@ namespace WorkflowProcessingModel.Factory
         public static int TimeNeededToTransportProductsToProductionHall()
         {
             return random.Next(30 * TimeUtils.SecInMinute, TimeUtils.SecInWorkingDay);
+        }
+
+        public static int MaterialsInOperation()
+        {
+            return random.Next(1, 5);
+        }
+
+        public static int MaterialsDemandInOperation()
+        {
+            return random.Next(1, 10);
+        }
+
+        public static int MachinesInOperation()
+        {
+            return random.Next(1, 3);
+        }
+
+        public static int ProductionTimeForMachinesInOperation()
+        {
+            return random.Next(5, TimeUtils.SecInMinute);
+        }
+
+        public static T RandomElement<T>(List<T> list)
+        {
+            return list[random.Next(list.Count)];
         }
 
     }
