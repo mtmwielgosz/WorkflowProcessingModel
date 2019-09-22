@@ -4,7 +4,6 @@ namespace WorkflowProcessingModel.Model
 {
     internal class Machine
     {
-        // TODO aging effect
         public int Index { get; set; }
         public string Name { get; set; }
         public double TimeLeftTillMaintenance { get; set; }

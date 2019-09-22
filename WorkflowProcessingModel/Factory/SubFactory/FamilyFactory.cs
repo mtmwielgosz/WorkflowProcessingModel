@@ -6,12 +6,23 @@ namespace WorkflowProcessingModel.Factory
 {
     class FamilyFactory
     {
-        public static List<Family> Generate(int quantity, List<Machine> allMachines)
+
+        public static List<Family> GenerateComplexProductionFor(List<Machine> allMachines, int quantity)
+        {
+            return GenerateFor(allMachines, quantity, true);
+        }
+
+        public static List<Family> GenerateSmallScaleProductionFor(List<Machine> allMachines, int quantity)
+        {
+            return GenerateFor(allMachines, quantity, false);
+        }
+
+        private static List<Family> GenerateFor(List<Machine> allMachines, int quantity, bool isComplexProduction)
         {
             List<Family> AllFamilies = new List<Family>();
             for (int index = 0; index < quantity; index++)
             {
-                AllFamilies.Add(new Family(index, "name" + index, null));
+                AllFamilies.Add(new Family(index, "name" + index, null)); // no setup times yet
             }
 
             foreach (Family CurrentFamily in AllFamilies)
@@ -21,7 +32,14 @@ namespace WorkflowProcessingModel.Factory
                 {
                     foreach (Machine CurrentMachineForSetup in allMachines)
                     {
-                        SetupsForCurrentFamily.Add(SetupFactory.GenerateFor(CurrentMachineForSetup, FamilyForSetup));
+                        if (isComplexProduction) // add setups
+                        {
+                            SetupsForCurrentFamily.Add(SetupFactory.GenerateComplexProductionFor(CurrentMachineForSetup, FamilyForSetup));
+                        }
+                        else
+                        {
+                            SetupsForCurrentFamily.Add(SetupFactory.GenerateSmallScaleProductionFor(CurrentMachineForSetup, FamilyForSetup));
+                        }
                     }
                 }
                 CurrentFamily.SetupTimes = SetupsForCurrentFamily;

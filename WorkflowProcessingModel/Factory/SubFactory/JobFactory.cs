@@ -11,7 +11,7 @@ namespace WorkflowProcessingModel.Factory
             return GenerateFor(allOperations, quantity, true);
         }
 
-        public static List<Job> GenerateSmallScaleFor(List<Operation> allOperations, int quantity)
+        public static List<Job> GenerateSmallScaleProductionFor(List<Operation> allOperations, int quantity)
         {
             return GenerateFor(allOperations, quantity, false);
         }

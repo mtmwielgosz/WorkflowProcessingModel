@@ -7,12 +7,22 @@ namespace WorkflowProcessingModel.Factory
     {
         private static Random random = new Random();
 
-        public static int MachineTimeLeftTillMaintenance()
+        public static int MachineTimeLeftTillMaintenanceForComplexProduction()
         {
-            return random.Next(TimeUtils.SecInWorkingDay, 5 * TimeUtils.SecInWorkingDay);
+            return random.Next(TimeUtils.SecInWorkingDay, 7 * TimeUtils.SecInWorkingDay);
         }
 
-        public static int MachineTimeOfMaintenance()
+        public static int MachineTimeLeftTillMaintenanceForSmallScaleProduction()
+        {
+            return random.Next(TimeUtils.SecInWorkingDay, 3 * TimeUtils.SecInWorkingDay);
+        }
+
+        public static int MachineTimeOfMaintenanceForComplexProduction()
+        {
+            return random.Next(10 * TimeUtils.SecInMinute, 30 * TimeUtils.SecInMinute);
+        }
+
+        public static int MachineTimeOfMaintenanceForSmallScaleProduction()
         {
             return random.Next(10 * TimeUtils.SecInMinute, 30 * TimeUtils.SecInMinute);
         }
@@ -22,9 +32,14 @@ namespace WorkflowProcessingModel.Factory
             return random.Next(10, 2 * TimeUtils.SecInMinute);
         }
 
-        public static int SetupTime()
+        public static int SetupTimeForComplexProduction()
         {
             return random.Next(TimeUtils.SecInHour, 4 * TimeUtils.SecInHour);
+        }
+
+        public static int SetupTimeForSmallScaleProduction()
+        {
+            return random.Next(20 * TimeUtils.SecInMinute, 50 * TimeUtils.SecInMinute);
         }
 
         public static int NumberOfAvailableMaterials()

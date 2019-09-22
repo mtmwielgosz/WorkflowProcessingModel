@@ -8,7 +8,17 @@ namespace WorkflowProcessingModel.Factory.SubFactory
     class OperationFactory
     {
 
-        public static List<Operation> GenerateFor(List<Machine> allMachines, List<Material> allMaterials, int quantity)
+        public static List<Operation> GenerateComplexProductionFor(List<Machine> allMachines, List<Material> allMaterials, int quantity)
+        {
+            return GenerateFor(allMachines, allMaterials, quantity, true);
+        }
+
+        public static List<Operation> GenerateSmallScaleProductionFor(List<Machine> allMachines, List<Material> allMaterials, int quantity)
+        {
+            return GenerateFor(allMachines, allMaterials, quantity, false);
+        }
+
+        private static List<Operation> GenerateFor(List<Machine> allMachines, List<Material> allMaterials, int quantity, bool isComplexProduction)
         {
             List<Operation> AllOperations = new List<Operation>();
             List<Machine> CurrentCapableMachines = new List<Machine>();
@@ -43,11 +53,18 @@ namespace WorkflowProcessingModel.Factory.SubFactory
                     {
                         foreach (Machine CurrentMachine in CurrentCapableMachines)
                         {
-                            CurrentSetupTimes.Add(SetupFactory.GenerateFor(CurrentMachine, OperationForSetup));
+                            if (isComplexProduction)
+                            {
+                                CurrentSetupTimes.Add(SetupFactory.GenerateComplexProductionFor(CurrentMachine, OperationForSetup));
+                            }
+                            else
+                            {
+                                CurrentSetupTimes.Add(SetupFactory.GenerateSmallScaleProductionFor(CurrentMachine, OperationForSetup));
+                            }
                         }
                     }
                 }
-                CurrentOperation.SetupTimes = CurrentSetupTimes; // add setups 
+                CurrentOperation.SetupTimes = CurrentSetupTimes;
             }
 
             return AllOperations;

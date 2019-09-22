@@ -5,7 +5,7 @@ namespace WorkflowProcessingModel.Factory
 {
     class MaterialFactory
     {
-        public static List<Material> Generate(int quantity)
+        public static List<Material> GenerateFor(int quantity)
         {
             List<Material> GeneratedMaterials = new List<Material>();
             for (int index = 0; index < quantity; index++)
