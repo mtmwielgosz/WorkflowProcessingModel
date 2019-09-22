@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using WorkflowProcessingModel.Factory.Utils;
 using WorkflowProcessingModel.Model;
 using WorkflowProcessingModel.Model.SubElements;
 
@@ -17,14 +18,14 @@ namespace WorkflowProcessingModel.Factory.SubFactory
                 Dictionary<Material, int> CurrentMaterialsDemand = new Dictionary<Material, int>();
                 for (int MaterialIindex = 0; MaterialIindex < numberOfMaterials; MaterialIindex++)
                 {
-                    AddUniqeElementToDictionary(CurrentMaterialsDemand, allMaterials, RandomGenerator.MaterialsDemandInOperation());
+                    CollectionUtils.AddUniqeElementToDictionary(CurrentMaterialsDemand, allMaterials, RandomGenerator.MaterialsDemandInOperation());
                 }
 
                 int numberOfMachines = RandomGenerator.MachinesInOperation();
                 Dictionary<Machine, int> CurrentCapableMachinesWithProductionTime = new Dictionary<Machine, int>();
                 for (int MachineIindex = 0; MachineIindex < numberOfMachines; MachineIindex++)
                 {
-                    AddUniqeElementToDictionary(CurrentCapableMachinesWithProductionTime, allMachines, RandomGenerator.ProductionTimeForMachinesInOperation());
+                    CollectionUtils.AddUniqeElementToDictionary(CurrentCapableMachinesWithProductionTime, allMachines, RandomGenerator.ProductionTimeForMachinesInOperation());
                 }
 
                 CurrentCapableMachines = new List<Machine>(CurrentCapableMachinesWithProductionTime.Keys);
@@ -51,23 +52,5 @@ namespace WorkflowProcessingModel.Factory.SubFactory
 
             return AllOperations;
         }
-
-
-        private static void AddUniqeElementToDictionary<T>(Dictionary<T, int> currentDictionary, List<T> currentList, int valueToAdd)
-        {
-            T ElementToAdd = RandomGenerator.RandomElement<T>(currentList);
-            if (!currentDictionary.ContainsKey(ElementToAdd))
-            {
-                currentDictionary.Add(ElementToAdd, valueToAdd);
-            }
-            else
-            {
-                AddUniqeElementToDictionary(currentDictionary, currentList, valueToAdd);
-            }
-        }
-
     }
-
-
-
 }

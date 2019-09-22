@@ -57,6 +57,31 @@ namespace WorkflowProcessingModel.Factory
             return random.Next(5, TimeUtils.SecInMinute);
         }
 
+        public static int OperationsInJobForSmallScaleProduction()
+        {
+            return random.Next(2, 5);
+        }
+
+        public static int OperationsInJobForComplexProduction()
+        {
+            return random.Next(20, 30);
+        }
+
+        public static DateTime DueDate()
+        {
+            return DateTime.Today.AddDays(random.Next(10, 60));
+        }
+
+        public static double PunishmentPerDay()
+        {
+            return (random.NextDouble() + 0.1) * 5000;
+        }
+
+        public static int JobsInBatch()
+        {
+            return random.Next(1, 250);
+        }
+
         public static T RandomElement<T>(List<T> list)
         {
             return list[random.Next(list.Count)];

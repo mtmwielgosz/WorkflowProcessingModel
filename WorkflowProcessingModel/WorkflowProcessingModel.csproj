@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Factory\ModelAssociationFactory.cs" />
     <Compile Include="Factory\SubFactory\OperationFactory.cs" />
+    <Compile Include="Factory\Utils\CollectionUtils.cs" />
     <Compile Include="Scheduling\VariableNeighborhoodSearchScheduling.cs" />
     <Compile Include="Scheduling\GenericAlgorithmScheduling.cs" />
     <Compile Include="Scheduling\GreedyScheduling.cs" />

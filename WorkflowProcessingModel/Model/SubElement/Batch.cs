@@ -10,19 +10,19 @@ namespace WorkflowProcessingModel.Model
         public DateTime DueDate { get; set; }
         public Double PunishmentPerDay { get; set; }
         public Job JobInBatch { get; set; }
-        public int NumerOfJobs { get; set; }
+        public int NumberOfJobs { get; set; }
 
         /// <summary> optional, can be null! </summary>
         public Family FamilyOfBatch { get; set; }
 
-        public Batch(int index, string name, DateTime dueDate, double punishmentPerDay, Job jobInBatch, int numerOfJobs, Family familyOfBatch)
+        public Batch(int index, string name, DateTime dueDate, double punishmentPerDay, Job jobInBatch, int numberOfJobs, Family familyOfBatch)
         {
             Index = index;
             Name = name ?? throw new ArgumentNullException(nameof(name));
             DueDate = dueDate;
             PunishmentPerDay = punishmentPerDay;
             JobInBatch = jobInBatch ?? throw new ArgumentNullException(nameof(jobInBatch));
-            NumerOfJobs = numerOfJobs;
+            NumberOfJobs = numberOfJobs;
             FamilyOfBatch = familyOfBatch;
         }
     }
