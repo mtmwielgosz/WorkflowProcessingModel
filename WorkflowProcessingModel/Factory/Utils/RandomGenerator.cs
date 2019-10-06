@@ -1,9 +1,10 @@
-﻿using System;
+﻿using System; 
 using System.Collections.Generic;
 
 namespace WorkflowProcessingModel.Factory
 {
-    class RandomGenerator
+    class RandomGenerator   // const dla wartości - plik property
+                            // 
     {
         private static Random random = new Random();
 

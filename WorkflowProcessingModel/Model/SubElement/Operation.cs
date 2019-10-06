@@ -8,7 +8,7 @@ namespace WorkflowProcessingModel.Model
     {
         public int Index { get; set; }
         public Dictionary<Material, int> MaterialsDemand { get; set; }
-        public Dictionary<Machine, int> CapableMachinesWithProductionTime { get; set; }
+        public Dictionary<Machine, int> CapableMachinesWithProcessingTime { get; set; }
         public List<SetupForBatch> SetupTimes { get; set; }
         public List<Move> TimesOfMovingSemiproducts { get; set; }
 
@@ -16,7 +16,7 @@ namespace WorkflowProcessingModel.Model
         {
             Index = index;
             MaterialsDemand = materialsDemand ?? throw new ArgumentNullException(nameof(materialsDemand));
-            CapableMachinesWithProductionTime = capableMachinesWithProductionTime ?? throw new ArgumentNullException(nameof(capableMachinesWithProductionTime));
+            CapableMachinesWithProcessingTime = capableMachinesWithProductionTime ?? throw new ArgumentNullException(nameof(capableMachinesWithProductionTime));
             SetupTimes = setupTimes;
             TimesOfMovingSemiproducts = timesOfMovingSemiproducts ?? throw new ArgumentNullException(nameof(timesOfMovingSemiproducts));
         }
