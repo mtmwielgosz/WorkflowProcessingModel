@@ -27,11 +27,23 @@ namespace WorkflowProcessingModel.Factory
                 {
                     ChosenFamily = RandomGenerator.RandomElement(allFamilies);
                 }
-                AllBatches.Add(new Batch(CurrentJob.Index, "Batch" + CurrentJob.Index, RandomGenerator.DueDate(),
-                    RandomGenerator.PunishmentPerDay(), CurrentJob, RandomGenerator.JobsInBatch(), ChosenFamily));
+                Batch GeneratedBatch = new Batch(CurrentJob.Index, "Batch" + CurrentJob.Index, RandomGenerator.DueDate(),
+                    RandomGenerator.PunishmentPerDay(), CurrentJob, RandomGenerator.JobsInBatch(), ChosenFamily);
+                FillBatchesInformationInJobsAndOperations(GeneratedBatch);
+                AllBatches.Add(GeneratedBatch);
+
             }
             return AllBatches;
         }
 
+        private static void FillBatchesInformationInJobsAndOperations(Batch generatedBatch)
+        {
+            Job CurrentJob = generatedBatch.JobInBatch;
+            CurrentJob.CurrentBatch = generatedBatch;
+            foreach (Operation CurrentOperation in CurrentJob.ListOfOperations)
+            {
+                CurrentOperation.CurrentBatch = generatedBatch;
+            }
+        }
     }
 }

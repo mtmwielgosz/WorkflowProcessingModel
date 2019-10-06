@@ -42,14 +42,14 @@ namespace WorkflowProcessingModel.Factory
             if (isComplexProduction)
             {
                 CurrentMachines = MachineFactory.GenerateComplexProductionFor(machinesQuantity);
-                CurrentOperations = OperationFactory.GenerateComplexProductionFor(CurrentMachines, CurrentMaterials, operatiosnQuantity);
-                CurrentJobs = JobFactory.GenerateComplexProductionFor(CurrentOperations, operatiosnQuantity);
+                CurrentOperations = OperationFactory.GenerateComplexProductionFor(CurrentMachines, CurrentMaterials, null, operatiosnQuantity);
+                CurrentJobs = JobFactory.GenerateComplexProductionFor(CurrentOperations, null, operatiosnQuantity);
             }
             else
             {
                 CurrentMachines = MachineFactory.GenerateComplexProductionFor(machinesQuantity);
-                CurrentOperations = OperationFactory.GenerateComplexProductionFor(CurrentMachines, CurrentMaterials, operatiosnQuantity);
-                CurrentJobs = JobFactory.GenerateSmallScaleProductionFor(CurrentOperations, operatiosnQuantity);
+                CurrentOperations = OperationFactory.GenerateComplexProductionFor(CurrentMachines, CurrentMaterials, null, operatiosnQuantity);
+                CurrentJobs = JobFactory.GenerateSmallScaleProductionFor(CurrentOperations, null, operatiosnQuantity);
             }
             List<Batch> CurrentBatches;
             if (familiesQuantity > 0)
