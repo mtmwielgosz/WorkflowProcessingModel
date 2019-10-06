@@ -70,7 +70,7 @@ namespace WorkflowProcessingModel.Factory
 
         public static int ProductionTimeForMachinesInOperation()
         {
-            return random.Next(5, TimeUtils.SecInMinute);
+            return random.Next(5, 60);
         }
 
         public static int OperationsInJobForSmallScaleProduction()

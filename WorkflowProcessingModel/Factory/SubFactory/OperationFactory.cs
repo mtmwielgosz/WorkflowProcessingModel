@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using WorkflowProcessingModel.Factory.Utils;
 using WorkflowProcessingModel.Model;
 using WorkflowProcessingModel.Model.SubElements;
@@ -47,22 +48,25 @@ namespace WorkflowProcessingModel.Factory.SubFactory
             foreach (Operation CurrentOperation in AllOperations)
             {
                 List<SetupForBatch> CurrentSetupTimes = new List<SetupForBatch>();
-                foreach (Operation OperationForSetup in AllOperations)
+                foreach (Operation PreviousOperation in AllOperations)
                 {
-                    if (!CurrentOperation.Equals(OperationForSetup))
+
+                    foreach (Machine CurrentMachine in CurrentOperation.CapableMachinesWithProcessingTime.Keys.ToList())
                     {
-                        foreach (Machine CurrentMachine in CurrentCapableMachines)
+                        if (CurrentOperation.Equals(PreviousOperation))
                         {
-                            if (isComplexProduction)
-                            {
-                                CurrentSetupTimes.Add(SetupFactory.GenerateComplexProductionFor(CurrentMachine, OperationForSetup));
-                            }
-                            else
-                            {
-                                CurrentSetupTimes.Add(SetupFactory.GenerateSmallScaleProductionFor(CurrentMachine, OperationForSetup));
-                            }
+                            CurrentSetupTimes.Add(new SetupForBatch(CurrentMachine, PreviousOperation, 0));
+                        }
+                        else if (isComplexProduction)
+                        {
+                            CurrentSetupTimes.Add(SetupFactory.GenerateComplexProductionFor(CurrentMachine, PreviousOperation));
+                        }
+                        else
+                        {
+                            CurrentSetupTimes.Add(SetupFactory.GenerateSmallScaleProductionFor(CurrentMachine, PreviousOperation));
                         }
                     }
+
                 }
                 CurrentOperation.SetupTimes = CurrentSetupTimes;
             }

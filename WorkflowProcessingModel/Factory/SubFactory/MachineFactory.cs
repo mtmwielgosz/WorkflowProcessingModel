@@ -24,12 +24,12 @@ namespace WorkflowProcessingModel.Factory
                 if (isComplexProduction)
                 {
                     GeneratedMachines.Add(new Machine(index, "Machine" + index,
-                        RandomGenerator.MachineTimeLeftTillMaintenanceForComplexProduction(), RandomGenerator.MachineTimeOfMaintenanceForComplexProduction(), startProcessingDate));
+                        RandomGenerator.MachineTimeLeftTillMaintenanceForComplexProduction(), RandomGenerator.MachineTimeOfMaintenanceForComplexProduction(), startProcessingDate, null));
                 }
                 else
                 {
                     GeneratedMachines.Add(new Machine(index, "Machine" + index,
-                       RandomGenerator.MachineTimeLeftTillMaintenanceForSmallScaleProduction(), RandomGenerator.MachineTimeOfMaintenanceForSmallScaleProduction(), startProcessingDate));
+                       RandomGenerator.MachineTimeLeftTillMaintenanceForSmallScaleProduction(), RandomGenerator.MachineTimeOfMaintenanceForSmallScaleProduction(), startProcessingDate, null));
                 }
             }
             return GeneratedMachines;

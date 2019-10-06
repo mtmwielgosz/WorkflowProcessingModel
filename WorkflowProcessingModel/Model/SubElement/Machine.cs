@@ -9,14 +9,16 @@ namespace WorkflowProcessingModel.Model
         public int TimeLeftTillMaintenance { get; set; }
         public int TimeOfMaintenance { get; set; }
         public DateTime NextAvailableStartProcessingDate { get; set; }
+        public Operation CurrentlyProcessedOperation { get; set; }
 
-        public Machine(int index, string name, int timeLeftTillMaintenance, int timeOfMaintenance, DateTime nextAvailableStartProcessingDate)
+        public Machine(int index, string name, int timeLeftTillMaintenance, int timeOfMaintenance, DateTime nextAvailableStartProcessingDate, Operation currentlyProcessedOperation)
         {
             Index = index;
             Name = name ?? throw new ArgumentNullException(nameof(name));
             TimeLeftTillMaintenance = timeLeftTillMaintenance;
             TimeOfMaintenance = timeOfMaintenance;
             NextAvailableStartProcessingDate = nextAvailableStartProcessingDate;
+            CurrentlyProcessedOperation = currentlyProcessedOperation;
         }
     }
 }

@@ -8,24 +8,24 @@ namespace WorkflowProcessingModel.Factory
 {
     class ModelAssociationFactory
     {
-        public static ModelAssociation GenerateComplexProductionWithFamiliesFor(DateTime startProcessingDate, int materialsQuantity, int machinesQuantity, int jobsQuantity, int operatiosnQuantity, int familiesQuantity)
+        public static ModelAssociation GenerateComplexProductionWithFamiliesFor(DateTime startProcessingDate, int materialsQuantity, int machinesQuantity, int jobsQuantity, int operationsQuantity, int familiesQuantity)
         {
-            return GenerateFor(startProcessingDate, materialsQuantity, machinesQuantity, jobsQuantity, operatiosnQuantity, familiesQuantity, true);
+            return GenerateFor(startProcessingDate, materialsQuantity, machinesQuantity, jobsQuantity, operationsQuantity, familiesQuantity, true);
         }
 
-        public static ModelAssociation GenerateSmallScaleProductionWithFamiliesFor(DateTime startProcessingDate, int materialsQuantity, int machinesQuantity, int jobsQuantity, int operatiosnQuantity, int familiesQuantity)
+        public static ModelAssociation GenerateSmallScaleProductionWithFamiliesFor(DateTime startProcessingDate, int materialsQuantity, int machinesQuantity, int jobsQuantity, int operationsQuantity, int familiesQuantity)
         {
-            return GenerateFor(startProcessingDate, materialsQuantity, machinesQuantity, jobsQuantity, operatiosnQuantity, familiesQuantity, false);
+            return GenerateFor(startProcessingDate, materialsQuantity, machinesQuantity, jobsQuantity, operationsQuantity, familiesQuantity, false);
         }
 
-        public static ModelAssociation GenerateComplexProductionWithoutFamiliesFor(DateTime startProcessingDate, int materialsQuantity, int machinesQuantity, int jobsQuantity, int operatiosnQuantity)
+        public static ModelAssociation GenerateComplexProductionWithoutFamiliesFor(DateTime startProcessingDate, int materialsQuantity, int machinesQuantity, int jobsQuantity, int operationsQuantity)
         {
-            return GenerateFor(startProcessingDate, materialsQuantity, machinesQuantity, jobsQuantity, operatiosnQuantity, 0, true);
+            return GenerateFor(startProcessingDate, materialsQuantity, machinesQuantity, jobsQuantity, operationsQuantity, 0, true);
         }
 
-        public static ModelAssociation GenerateSmallScaleProductionWithoutFamiliesFor(DateTime startProcessingDate, int materialsQuantity, int machinesQuantity, int jobsQuantity, int operatiosnQuantity)
+        public static ModelAssociation GenerateSmallScaleProductionWithoutFamiliesFor(DateTime startProcessingDate, int materialsQuantity, int machinesQuantity, int jobsQuantity, int operationsQuantity)
         {
-            return GenerateFor(startProcessingDate, materialsQuantity, machinesQuantity, jobsQuantity, operatiosnQuantity, 0, false);
+            return GenerateFor(startProcessingDate, materialsQuantity, machinesQuantity, jobsQuantity, operationsQuantity, 0, false);
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace WorkflowProcessingModel.Factory
         /// familiesQuantity can be 0 -> then no families scheduling
         /// isComplexProduction - complex production, else small scale production
         /// </summary>
-        private static ModelAssociation GenerateFor(DateTime startProcessingDate, int materialsQuantity, int machinesQuantity, int jobsQuantity, int operatiosnQuantity, int familiesQuantity, bool isComplexProduction)
+        private static ModelAssociation GenerateFor(DateTime startProcessingDate, int materialsQuantity, int machinesQuantity, int jobsQuantity, int operationsQuantity, int familiesQuantity, bool isComplexProduction)
         {
             List<Material> CurrentMaterials = MaterialFactory.GenerateFor(materialsQuantity);
             Storehouse CurrentStorehouse = StorehouseFactory.GenerateFor(CurrentMaterials);
@@ -43,14 +43,14 @@ namespace WorkflowProcessingModel.Factory
             if (isComplexProduction)
             {
                 CurrentMachines = MachineFactory.GenerateComplexProductionFor(startProcessingDate, machinesQuantity);
-                CurrentOperations = OperationFactory.GenerateComplexProductionFor(CurrentMachines, CurrentMaterials, null, null, operatiosnQuantity);
-                CurrentJobs = JobFactory.GenerateComplexProductionFor(CurrentOperations, null, operatiosnQuantity);
+                CurrentOperations = OperationFactory.GenerateComplexProductionFor(CurrentMachines, CurrentMaterials, null, null, operationsQuantity);
+                CurrentJobs = JobFactory.GenerateComplexProductionFor(CurrentOperations, null, operationsQuantity);
             }
             else
             {
                 CurrentMachines = MachineFactory.GenerateComplexProductionFor(startProcessingDate, machinesQuantity);
-                CurrentOperations = OperationFactory.GenerateComplexProductionFor(CurrentMachines, CurrentMaterials, null, null, operatiosnQuantity);
-                CurrentJobs = JobFactory.GenerateSmallScaleProductionFor(CurrentOperations, null, operatiosnQuantity);
+                CurrentOperations = OperationFactory.GenerateComplexProductionFor(CurrentMachines, CurrentMaterials, null, null, operationsQuantity);
+                CurrentJobs = JobFactory.GenerateSmallScaleProductionFor(CurrentOperations, null, operationsQuantity);
             }
             List<Batch> CurrentBatches;
             if (familiesQuantity > 0)
