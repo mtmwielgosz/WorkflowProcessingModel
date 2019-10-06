@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using WorkflowProcessingModel.Factory.SubFactory;
 using WorkflowProcessingModel.Model;
 using WorkflowProcessingModel.Model.SubElements;
@@ -7,24 +8,24 @@ namespace WorkflowProcessingModel.Factory
 {
     class ModelAssociationFactory
     {
-        public static ModelAssociation GenerateComplexProductionWithFamiliesFor(int materialsQuantity, int machinesQuantity, int jobsQuantity, int operatiosnQuantity, int familiesQuantity)
+        public static ModelAssociation GenerateComplexProductionWithFamiliesFor(DateTime startProcessingDate, int materialsQuantity, int machinesQuantity, int jobsQuantity, int operatiosnQuantity, int familiesQuantity)
         {
-            return GenerateFor(materialsQuantity, machinesQuantity, jobsQuantity, operatiosnQuantity, familiesQuantity, true);
+            return GenerateFor(startProcessingDate, materialsQuantity, machinesQuantity, jobsQuantity, operatiosnQuantity, familiesQuantity, true);
         }
 
-        public static ModelAssociation GenerateSmallScaleProductionWithFamiliesFor(int materialsQuantity, int machinesQuantity, int jobsQuantity, int operatiosnQuantity, int familiesQuantity)
+        public static ModelAssociation GenerateSmallScaleProductionWithFamiliesFor(DateTime startProcessingDate, int materialsQuantity, int machinesQuantity, int jobsQuantity, int operatiosnQuantity, int familiesQuantity)
         {
-            return GenerateFor(materialsQuantity, machinesQuantity, jobsQuantity, operatiosnQuantity, familiesQuantity, false);
+            return GenerateFor(startProcessingDate, materialsQuantity, machinesQuantity, jobsQuantity, operatiosnQuantity, familiesQuantity, false);
         }
 
-        public static ModelAssociation GenerateComplexProductionWithoutFamiliesFor(int materialsQuantity, int machinesQuantity, int jobsQuantity, int operatiosnQuantity)
+        public static ModelAssociation GenerateComplexProductionWithoutFamiliesFor(DateTime startProcessingDate, int materialsQuantity, int machinesQuantity, int jobsQuantity, int operatiosnQuantity)
         {
-            return GenerateFor(materialsQuantity, machinesQuantity, jobsQuantity, operatiosnQuantity, 0, true);
+            return GenerateFor(startProcessingDate, materialsQuantity, machinesQuantity, jobsQuantity, operatiosnQuantity, 0, true);
         }
 
-        public static ModelAssociation GenerateSmallScaleProductionWithoutFamiliesFor(int materialsQuantity, int machinesQuantity, int jobsQuantity, int operatiosnQuantity)
+        public static ModelAssociation GenerateSmallScaleProductionWithoutFamiliesFor(DateTime startProcessingDate, int materialsQuantity, int machinesQuantity, int jobsQuantity, int operatiosnQuantity)
         {
-            return GenerateFor(materialsQuantity, machinesQuantity, jobsQuantity, operatiosnQuantity, 0, false);
+            return GenerateFor(startProcessingDate, materialsQuantity, machinesQuantity, jobsQuantity, operatiosnQuantity, 0, false);
         }
 
         /// <summary>
@@ -32,7 +33,7 @@ namespace WorkflowProcessingModel.Factory
         /// familiesQuantity can be 0 -> then no families scheduling
         /// isComplexProduction - complex production, else small scale production
         /// </summary>
-        private static ModelAssociation GenerateFor(int materialsQuantity, int machinesQuantity, int jobsQuantity, int operatiosnQuantity, int familiesQuantity, bool isComplexProduction)
+        private static ModelAssociation GenerateFor(DateTime startProcessingDate, int materialsQuantity, int machinesQuantity, int jobsQuantity, int operatiosnQuantity, int familiesQuantity, bool isComplexProduction)
         {
             List<Material> CurrentMaterials = MaterialFactory.GenerateFor(materialsQuantity);
             Storehouse CurrentStorehouse = StorehouseFactory.GenerateFor(CurrentMaterials);
@@ -41,14 +42,14 @@ namespace WorkflowProcessingModel.Factory
             List<Job> CurrentJobs;
             if (isComplexProduction)
             {
-                CurrentMachines = MachineFactory.GenerateComplexProductionFor(machinesQuantity);
-                CurrentOperations = OperationFactory.GenerateComplexProductionFor(CurrentMachines, CurrentMaterials, null, operatiosnQuantity);
+                CurrentMachines = MachineFactory.GenerateComplexProductionFor(startProcessingDate, machinesQuantity);
+                CurrentOperations = OperationFactory.GenerateComplexProductionFor(CurrentMachines, CurrentMaterials, null, null, operatiosnQuantity);
                 CurrentJobs = JobFactory.GenerateComplexProductionFor(CurrentOperations, null, operatiosnQuantity);
             }
             else
             {
-                CurrentMachines = MachineFactory.GenerateComplexProductionFor(machinesQuantity);
-                CurrentOperations = OperationFactory.GenerateComplexProductionFor(CurrentMachines, CurrentMaterials, null, operatiosnQuantity);
+                CurrentMachines = MachineFactory.GenerateComplexProductionFor(startProcessingDate, machinesQuantity);
+                CurrentOperations = OperationFactory.GenerateComplexProductionFor(CurrentMachines, CurrentMaterials, null, null, operatiosnQuantity);
                 CurrentJobs = JobFactory.GenerateSmallScaleProductionFor(CurrentOperations, null, operatiosnQuantity);
             }
             List<Batch> CurrentBatches;
@@ -63,11 +64,11 @@ namespace WorkflowProcessingModel.Factory
                 {
                     CurrentFamilies = FamilyFactory.GenerateSmallScaleProductionFor(CurrentMachines, familiesQuantity);
                 }
-                CurrentBatches = BatchFactory.GenerateWithFamiliesFor(CurrentJobs, CurrentFamilies);
+                CurrentBatches = BatchFactory.GenerateWithFamiliesFor(startProcessingDate, CurrentJobs, CurrentFamilies);
             }
             else
             {
-                CurrentBatches = BatchFactory.GenerateWithoutFamiliesFor(CurrentJobs);
+                CurrentBatches = BatchFactory.GenerateWithoutFamiliesFor(startProcessingDate, CurrentJobs);
             }
 
             return new ModelAssociation(CurrentBatches, CurrentMachines, CurrentStorehouse);

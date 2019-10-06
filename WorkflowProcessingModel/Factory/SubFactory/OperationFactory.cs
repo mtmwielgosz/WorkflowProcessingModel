@@ -8,17 +8,17 @@ namespace WorkflowProcessingModel.Factory.SubFactory
     class OperationFactory
     {
 
-        public static List<Operation> GenerateComplexProductionFor(List<Machine> allMachines, List<Material> allMaterials, Batch currentBatch, int quantity)
+        public static List<Operation> GenerateComplexProductionFor(List<Machine> allMachines, List<Material> allMaterials, Batch currentBatch, Job currentJob, int quantity)
         {
-            return GenerateFor(allMachines, allMaterials, currentBatch, quantity, true);
+            return GenerateFor(allMachines, allMaterials, currentBatch, currentJob, quantity, true);
         }
 
-        public static List<Operation> GenerateSmallScaleProductionFor(List<Machine> allMachines, List<Material> allMaterials, Batch currentBatch, int quantity)
+        public static List<Operation> GenerateSmallScaleProductionFor(List<Machine> allMachines, List<Material> allMaterials, Batch currentBatch, Job currentJob, int quantity)
         {
-            return GenerateFor(allMachines, allMaterials, currentBatch, quantity, false);
+            return GenerateFor(allMachines, allMaterials, currentBatch, currentJob, quantity, false);
         }
 
-        private static List<Operation> GenerateFor(List<Machine> allMachines, List<Material> allMaterials, Batch currentBatch, int quantity, bool isComplexProduction)
+        private static List<Operation> GenerateFor(List<Machine> allMachines, List<Material> allMaterials, Batch currentBatch, Job currentJob, int quantity, bool isComplexProduction)
         {
             List<Operation> AllOperations = new List<Operation>();
             List<Machine> CurrentCapableMachines = new List<Machine>();
@@ -41,7 +41,7 @@ namespace WorkflowProcessingModel.Factory.SubFactory
                 CurrentCapableMachines = new List<Machine>(CurrentCapableMachinesWithProductionTime.Keys);
 
                 AllOperations.Add(new Operation(OperationIndex, "Name" + OperationIndex, CurrentMaterialsDemand, CurrentCapableMachinesWithProductionTime, null,
-                    MoveFactory.GenerateFor(CurrentCapableMachines), currentBatch)); // no setup times yet
+                    MoveFactory.GenerateFor(CurrentCapableMachines), currentBatch, currentJob)); // no setup times yet
             }
 
             foreach (Operation CurrentOperation in AllOperations)

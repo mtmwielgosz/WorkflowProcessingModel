@@ -47,6 +47,7 @@
     <Compile Include="Factory\SubFactory\OperationFactory.cs" />
     <Compile Include="Factory\Utils\CollectionUtils.cs" />
     <Compile Include="Scheduling\OptimalScheduling.cs" />
+    <Compile Include="Scheduling\Utils\SchedulingUtlis.cs" />
     <Compile Include="Scheduling\VariableNeighborhoodSearchScheduling.cs" />
     <Compile Include="Scheduling\GenericAlgorithmScheduling.cs" />
     <Compile Include="Scheduling\GreedyScheduling.cs" />
@@ -87,8 +88,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

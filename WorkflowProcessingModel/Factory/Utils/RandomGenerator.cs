@@ -1,4 +1,4 @@
-﻿using System; 
+﻿using System;
 using System.Collections.Generic;
 
 namespace WorkflowProcessingModel.Factory
@@ -83,9 +83,9 @@ namespace WorkflowProcessingModel.Factory
             return random.Next(20, 30);
         }
 
-        public static DateTime DueDate()
+        public static DateTime DueDate(DateTime startProcessingDate)
         {
-            return DateTime.Today.AddDays(random.Next(10, 60));
+            return startProcessingDate.AddDays(random.Next(10, 60));
         }
 
         public static double PunishmentPerDay()

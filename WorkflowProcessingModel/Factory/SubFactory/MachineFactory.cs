@@ -1,21 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using WorkflowProcessingModel.Model;
 
 namespace WorkflowProcessingModel.Factory
 {
     class MachineFactory
     {
-        public static List<Machine> GenerateComplexProductionFor(int quantity)
+        public static List<Machine> GenerateComplexProductionFor(DateTime startProcessingDate, int quantity)
         {
-            return GenerateFor(quantity, true);
+            return GenerateFor(startProcessingDate, quantity, true);
         }
 
-        public static List<Machine> GenerateSmallScaleProductionFor(int quantity)
+        public static List<Machine> GenerateSmallScaleProductionFor(DateTime startProcessingDate, int quantity)
         {
-            return GenerateFor(quantity, false);
+            return GenerateFor(startProcessingDate, quantity, false);
         }
 
-        private static List<Machine> GenerateFor(int quantity, bool isComplexProduction)
+        private static List<Machine> GenerateFor(DateTime startProcessingDate, int quantity, bool isComplexProduction)
         {
             List<Machine> GeneratedMachines = new List<Machine>();
             for (int index = 0; index < quantity; index++)
@@ -23,12 +24,12 @@ namespace WorkflowProcessingModel.Factory
                 if (isComplexProduction)
                 {
                     GeneratedMachines.Add(new Machine(index, "Name" + index,
-                        RandomGenerator.MachineTimeLeftTillMaintenanceForComplexProduction(), RandomGenerator.MachineTimeOfMaintenanceForComplexProduction()));
+                        RandomGenerator.MachineTimeLeftTillMaintenanceForComplexProduction(), RandomGenerator.MachineTimeOfMaintenanceForComplexProduction(), startProcessingDate));
                 }
                 else
                 {
                     GeneratedMachines.Add(new Machine(index, "Name" + index,
-                       RandomGenerator.MachineTimeLeftTillMaintenanceForSmallScaleProduction(), RandomGenerator.MachineTimeOfMaintenanceForSmallScaleProduction()));
+                       RandomGenerator.MachineTimeLeftTillMaintenanceForSmallScaleProduction(), RandomGenerator.MachineTimeOfMaintenanceForSmallScaleProduction(), startProcessingDate));
                 }
             }
             return GeneratedMachines;

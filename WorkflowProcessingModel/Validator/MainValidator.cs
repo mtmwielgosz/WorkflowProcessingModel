@@ -8,7 +8,7 @@ namespace WorkflowProcessingModel.Validate
     {
         private List<IValidator> AllValidators = new List<IValidator> { new MachineNeverBlockedByMoreThanOneBatch() };
 
-        public bool Validate(List<BatchMachineAssignment> BatchMachineAssociationsResult)
+        public bool Validate(List<OperationMachineAssignment> BatchMachineAssociationsResult)
         {
             return AllValidators.TrueForAll(Validator => Validate(BatchMachineAssociationsResult));
         }

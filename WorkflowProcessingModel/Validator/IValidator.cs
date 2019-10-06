@@ -5,6 +5,6 @@ namespace WorkflowProcessingModel.Validate
 {
     interface IValidator
     {
-        bool Validate(List<BatchMachineAssignment> BatchMachineAssociationsResult);
+        bool Validate(List<OperationMachineAssignment> BatchMachineAssociationsResult);
     }
 }

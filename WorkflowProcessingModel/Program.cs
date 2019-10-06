@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using WorkflowProcessingModel.Algorithm;
+using WorkflowProcessingModel.Algorithm.Results;
 
 namespace WorkflowProcessingModel
 {
@@ -15,9 +17,11 @@ namespace WorkflowProcessingModel
 
             // TODO 
             // TODO aging effect
-            scheduling.Schedule(null, MachineEnvironment.SINGLE_MACHINE, new List<Constraint> { Constraint.BATCH_PROCESSING, Constraint.SEQUENCE_DEPENDENT_SETUP_TIME }, OptimisationObjective.MAKESPAN);
+            ResultAssociation resultAssociation = scheduling.Schedule(null, MachineEnvironment.SINGLE_MACHINE, new List<Constraint> { Constraint.BATCH_PROCESSING, Constraint.SEQUENCE_DEPENDENT_SETUP_TIME }, OptimisationObjective.MAKESPAN);
+
 
             // TODO print results (ToString)
+            Console.WriteLine(resultAssociation);
 
         }
     }
