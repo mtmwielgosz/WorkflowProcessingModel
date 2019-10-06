@@ -1,6 +1,6 @@
 ﻿namespace WorkflowProcessingModel.Model.SubElements
 {
-    class SetupForFamily : Setup
+    public class SetupForFamily : Setup
     {
         public Family PreviousFamily { get; set; }
 

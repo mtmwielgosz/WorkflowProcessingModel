@@ -8,7 +8,7 @@ namespace WorkflowProcessingModel.Factory
         public const int SecInMinute = 60;
         public const int SecInHour = 60 * SecInMinute;
         public const int SecInShift = 8 * SecInHour;
-        public const int SecInWorkingDay = 2 * SecInShift; // working day = 16 hours
+        public const int SecInWorkingDay = 3 * SecInShift; // working day = 16 hours
 
         /// <summary>
         /// Format: dd.MM.yyyy hh:mm:ss

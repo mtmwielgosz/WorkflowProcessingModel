@@ -2,7 +2,7 @@
 
 namespace WorkflowProcessingModel.Model
 {
-    internal class Material
+    public class Material
     {
         public int Index { get; set; }
         public string Name { get; set; }

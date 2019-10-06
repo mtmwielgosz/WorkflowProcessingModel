@@ -1,6 +1,6 @@
 ﻿namespace WorkflowProcessingModel.Algorithm
 {
-    enum MachineEnvironment
+    public enum MachineEnvironment
     {
         SINGLE_MACHINE, JOB_SHOP
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace WorkflowProcessingModel.Model.SubElements
 {
-    class Family
+    public class Family
     {
         public int Index { get; set; }
         public string Name { get; set; }

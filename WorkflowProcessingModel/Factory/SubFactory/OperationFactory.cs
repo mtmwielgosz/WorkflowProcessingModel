@@ -40,7 +40,7 @@ namespace WorkflowProcessingModel.Factory.SubFactory
 
                 CurrentCapableMachines = new List<Machine>(CurrentCapableMachinesWithProductionTime.Keys);
 
-                AllOperations.Add(new Operation(OperationIndex, "Name" + OperationIndex, CurrentMaterialsDemand, CurrentCapableMachinesWithProductionTime, null,
+                AllOperations.Add(new Operation(OperationIndex, "Operation" + OperationIndex, CurrentMaterialsDemand, CurrentCapableMachinesWithProductionTime, null,
                     MoveFactory.GenerateFor(CurrentCapableMachines), currentBatch, currentJob)); // no setup times yet
             }
 

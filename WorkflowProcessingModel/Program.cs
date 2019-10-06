@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using WorkflowProcessingModel.Algorithm;
 using WorkflowProcessingModel.Algorithm.Results;
 
@@ -21,7 +20,7 @@ namespace WorkflowProcessingModel
 
 
             // TODO print results (ToString)
-            Console.WriteLine(resultAssociation);
+
 
         }
     }

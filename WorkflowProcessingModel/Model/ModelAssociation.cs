@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace WorkflowProcessingModel.Model
 {
-    class ModelAssociation
+    public class ModelAssociation
     {
         public List<Batch> AllBatches { get; set; }
         public List<Machine> AllMachines { get; set; }

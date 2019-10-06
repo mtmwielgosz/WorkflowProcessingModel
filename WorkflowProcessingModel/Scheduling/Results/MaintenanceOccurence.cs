@@ -3,7 +3,7 @@ using WorkflowProcessingModel.Model;
 
 namespace WorkflowProcessingModel.Algorithm.Results
 {
-    class MaintenanceOccurence
+    public class MaintenanceOccurence
     {
         public Machine MaintainedMachines { get; set; }
         public DateTime StartMaintenanceTime { get; set; }

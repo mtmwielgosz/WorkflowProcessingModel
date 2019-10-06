@@ -3,7 +3,7 @@ using WorkflowProcessingModel.Model.SubElements;
 
 namespace WorkflowProcessingModel.Model
 {
-    class Batch
+    public class Batch
     {
         public int Index { get; set; }
         public string Name { get; set; }

@@ -4,7 +4,7 @@ using WorkflowProcessingModel.Model;
 
 namespace WorkflowProcessingModel.Algorithm
 {
-    interface IScheduling
+    public interface IScheduling
     {
 
         /// <summary>

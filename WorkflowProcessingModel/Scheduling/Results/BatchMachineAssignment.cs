@@ -3,7 +3,7 @@ using WorkflowProcessingModel.Model;
 
 namespace WorkflowProcessingModel.Algorithm
 {
-    class OperationMachineAssignment
+    public class OperationMachineAssignment
     {
         public Operation CurrentOperation { get; set; }
         public Machine CurrentMachine { get; set; }

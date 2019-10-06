@@ -10,7 +10,7 @@ namespace WorkflowProcessingModel.Factory
             List<Material> GeneratedMaterials = new List<Material>();
             for (int index = 0; index < quantity; index++)
             {
-                GeneratedMaterials.Add(new Material(index, "Name" + index));
+                GeneratedMaterials.Add(new Material(index, "Material" + index));
             }
             return GeneratedMaterials;
         }

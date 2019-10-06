@@ -2,7 +2,7 @@
 
 namespace WorkflowProcessingModel.Model
 {
-    class Move
+    public class Move
     {
         public Machine FromMachine { get; set; }
         public Machine ToMachine { get; set; }

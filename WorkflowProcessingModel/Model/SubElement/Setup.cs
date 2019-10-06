@@ -2,7 +2,7 @@
 
 namespace WorkflowProcessingModel.Model
 {
-    abstract class Setup
+    public abstract class Setup
     {
         public Machine CurrentMachine { get; set; }
         public int SetupTime { get; set; }

@@ -22,7 +22,7 @@ namespace WorkflowProcessingModel.Factory
             List<Family> AllFamilies = new List<Family>();
             for (int index = 0; index < quantity; index++)
             {
-                AllFamilies.Add(new Family(index, "name" + index, null)); // no setup times yet
+                AllFamilies.Add(new Family(index, "Family" + index, null)); // no setup times yet
             }
 
             foreach (Family CurrentFamily in AllFamilies)

@@ -1,6 +1,6 @@
 ﻿namespace WorkflowProcessingModel.Model.SubElements
 {
-    class SetupForBatch : Setup
+    public class SetupForBatch : Setup
     {
         public Operation PreviousOperation { get; set; }
 

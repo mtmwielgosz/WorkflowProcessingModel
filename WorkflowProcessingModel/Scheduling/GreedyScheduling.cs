@@ -8,13 +8,13 @@ using WorkflowProcessingModel.Scheduling.Utils;
 
 namespace WorkflowProcessingModel.Algorithm
 {
-    class GreedyScheduling : IScheduling
+    public class GreedyScheduling : IScheduling
     {
         // TODO implement
         public ResultAssociation Schedule(ModelAssociation CurrentModel, MachineEnvironment CurrentMachineEnvironment, List<Constraint> CurrentConstraints,
             OptimisationObjective CurrentOptimisationObjective)
         {
-            ModelAssociation CurrentModelAssocation = ModelAssociationFactory.GenerateComplexProductionWithFamiliesFor(TimeUtils.GetDateTime("01.01.2020 06:00:00"), 100, 25, 30, 120, 6);
+            ModelAssociation CurrentModelAssocation = ModelAssociationFactory.GenerateComplexProductionWithFamiliesFor(TimeUtils.GetDateTime("01.01.2020 06:00:00"), 100, 50, 100, 300, 6);
             List<Operation> AllOperations = SchedulingUtlis.GetAllOperations(CurrentModelAssocation.AllBatches);
             AllOperations.Sort((operation1, operation2) => operation1.CurrentBatch.DueDate.CompareTo(operation2.CurrentBatch.DueDate));
 
@@ -28,9 +28,7 @@ namespace WorkflowProcessingModel.Algorithm
                 DateTime startProcessingDate = ChosenMachine.NextAvailableStartProcessingDate;
 
                 int neededTime = CurrentOperation.CapableMachinesWithProcessingTime[ChosenMachine] * CurrentOperation.CurrentBatch.NumberOfJobs;
-                int neededDays = neededTime / TimeUtils.SecInWorkingDay;
-                int restSeconds = neededTime % TimeUtils.SecInWorkingDay;
-                DateTime finishProcessingDate = startProcessingDate.AddDays(neededDays).AddSeconds(restSeconds);
+                DateTime finishProcessingDate = startProcessingDate.AddSeconds(neededTime);
                 CurrentOperationMachineAssociations.Add(new OperationMachineAssignment(CurrentOperation, ChosenMachine, startProcessingDate, finishProcessingDate));
                 ChosenMachine.NextAvailableStartProcessingDate = finishProcessingDate;
             }

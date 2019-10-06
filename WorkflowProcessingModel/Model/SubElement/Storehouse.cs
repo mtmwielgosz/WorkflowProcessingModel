@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace WorkflowProcessingModel.Model
 {
-    class Storehouse
+    public class Storehouse
     {
         public int Index { get; set; }
         public string Name { get; set; }

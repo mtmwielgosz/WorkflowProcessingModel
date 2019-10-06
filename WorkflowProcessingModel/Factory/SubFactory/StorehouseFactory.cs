@@ -12,7 +12,7 @@ namespace WorkflowProcessingModel.Factory
             {
                 AvailableMaterials.Add(CurrentMaterial, RandomGenerator.NumberOfAvailableMaterials());
             }
-            return new Storehouse(0, "Storehouse0", AvailableMaterials, RandomGenerator.TimeNeededToTransportProductsToProductionHall());
+            return new Storehouse(0, "Storehouse" + 0, AvailableMaterials, RandomGenerator.TimeNeededToTransportProductsToProductionHall());
         }
     }
 }

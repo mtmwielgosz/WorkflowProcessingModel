@@ -4,7 +4,7 @@ using WorkflowProcessingModel.Model.SubElements;
 
 namespace WorkflowProcessingModel.Model
 {
-    class Operation
+    public class Operation
     {
         public int Index { get; set; }
         public string Name { get; set; }

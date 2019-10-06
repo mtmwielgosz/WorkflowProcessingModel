@@ -3,14 +3,14 @@ using WorkflowProcessingModel.Model;
 
 namespace WorkflowProcessingModel.Algorithm.Results
 {
-    class ResultAssociation
+    public class ResultAssociation
     {
         /// <summary> main output (optimisation result) </summary>
-        List<OperationMachineAssignment> OperationMachineAssignmentResult { get; set; }
+        public List<OperationMachineAssignment> OperationMachineAssignmentResult { get; set; }
         /// <summary> extra output </summary>
-        List<MaintenanceOccurence> MaintenanceOccurencesResult { get; set; }
+        public List<MaintenanceOccurence> MaintenanceOccurencesResult { get; set; }
         /// <summary> extra output </summary>
-        Dictionary<Material, int> ExtraNeededMaterialsResult { get; set; }
+        public Dictionary<Material, int> ExtraNeededMaterialsResult { get; set; }
 
         public ResultAssociation(List<OperationMachineAssignment> operationMachineAssignmentResult,
             List<MaintenanceOccurence> maintenanceOccurencesResult, Dictionary<Material, int> extraNeededMaterialsResult)
