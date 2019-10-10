@@ -1,107 +1,153 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace WorkflowProcessingModel.Factory
 {
-    class RandomGenerator   // const dla wartości - plik property
-                            // 
+    class RandomGenerator  
     {
-        private static Random random = new Random();
+        private static Random Rand = new Random();
+        private static readonly Dictionary<string, string> Dict = ReadDictionaryFile("C:\\Users\\Mateusz\\source\\repos\\WorkflowProcessingModel\\WorkflowProcessingModel\\Properties\\Parameters.properties");
+
+        private static Dictionary<string, string> ReadDictionaryFile(string fileName)
+        {
+            Dictionary<string, string> Dictionary = new Dictionary<string, string>();
+            foreach (string Line in File.ReadAllLines(fileName))
+            {
+                if ((!string.IsNullOrEmpty(Line)) &&
+                    (!Line.StartsWith(";")) &&
+                    (!Line.StartsWith("#")) &&
+                    (!Line.StartsWith("'")) &&
+                    (Line.Contains('=')))
+                {
+                    int Index = Line.IndexOf('=');
+                    string Key = Line.Substring(0, Index).Trim();
+                    string Value = Line.Substring(Index + 1).Trim();
+
+                    if ((Value.StartsWith("\"") && Value.EndsWith("\"")) ||
+                        (Value.StartsWith("'") && Value.EndsWith("'")))
+                    {
+                        Value = Value.Substring(1, Value.Length - 2);
+                    }
+                    Dictionary.Add(Key, Value);
+                }
+            }
+            return Dictionary;
+        }
+
 
         public static int MachineTimeLeftTillMaintenanceForComplexProduction()
         {
-            return random.Next(TimeUtils.SecInWorkingDay, 7 * TimeUtils.SecInWorkingDay);
+            return RandomBetween("MachineTimeLeftTillMaintenanceForComplexProduction");
         }
 
         public static int MachineTimeLeftTillMaintenanceForSmallScaleProduction()
         {
-            return random.Next(TimeUtils.SecInWorkingDay, 3 * TimeUtils.SecInWorkingDay);
+            return RandomBetween("MachineTimeLeftTillMaintenanceForSmallScaleProduction");
         }
 
         public static int MachineTimeOfMaintenanceForComplexProduction()
         {
-            return random.Next(10 * TimeUtils.SecInMinute, 30 * TimeUtils.SecInMinute);
+            return RandomBetween("MachineTimeOfMaintenanceForComplexProduction");
         }
 
         public static int MachineTimeOfMaintenanceForSmallScaleProduction()
         {
-            return random.Next(10 * TimeUtils.SecInMinute, 30 * TimeUtils.SecInMinute);
+            return RandomBetween("MachineTimeOfMaintenanceForSmallScaleProduction");
         }
 
-        public static int MoveTimeNeededToMove()
+        public static int TimeNeededToMoveBetweenMachines()
         {
-            return random.Next(10, 2 * TimeUtils.SecInMinute);
+            return RandomBetween("TimeNeededToMoveBetweenMachines");
         }
 
         public static int SetupTimeForComplexProduction()
         {
-            return random.Next(TimeUtils.SecInHour, 4 * TimeUtils.SecInHour);
+            return RandomBetween("SetupTimeForComplexProduction");
         }
 
         public static int SetupTimeForSmallScaleProduction()
         {
-            return random.Next(20 * TimeUtils.SecInMinute, 50 * TimeUtils.SecInMinute);
+            return RandomBetween("SetupTimeForSmallScaleProduction");
         }
 
         public static int NumberOfAvailableMaterials()
         {
-            return random.Next(100, 10000);
+            return RandomBetween("NumberOfAvailableMaterials");
         }
 
         public static int TimeNeededToTransportProductsToProductionHall()
         {
-            return random.Next(30 * TimeUtils.SecInMinute, TimeUtils.SecInWorkingDay);
+            return RandomBetween("TimeNeededToTransportProductsToProductionHall");
         }
 
         public static int MaterialsInOperation()
         {
-            return random.Next(1, 5);
+            return RandomBetween("MaterialsInOperation");
         }
 
         public static int MaterialsDemandInOperation()
         {
-            return random.Next(1, 10);
+            return RandomBetween("MaterialsDemandInOperation");
         }
 
         public static int MachinesInOperation()
         {
-            return random.Next(1, 3);
+            return RandomBetween("MachinesInOperation");
         }
 
         public static int ProductionTimeForMachinesInOperation()
         {
-            return random.Next(5, 60);
+            return RandomBetween("ProductionTimeForMachinesInOperation");
         }
 
         public static int OperationsInJobForSmallScaleProduction()
         {
-            return random.Next(2, 5);
+            return RandomBetween("OperationsInJobForSmallScaleProduction");
         }
 
         public static int OperationsInJobForComplexProduction()
         {
-            return random.Next(20, 30);
+            return RandomBetween("OperationsInJobForComplexProduction");
         }
 
         public static DateTime DueDate(DateTime startProcessingDate)
         {
-            return startProcessingDate.AddDays(random.Next(10, 60));
+            return startProcessingDate.AddDays(RandomBetween("DaysToProcessBatch"));
         }
 
-        public static double PunishmentPerDay()
+        public static int PunishmentPerDay()
         {
-            return (random.NextDouble() + 0.1) * 5000;
+            return RandomBetween("PunishmentPerDay");
         }
 
         public static int JobsInBatch()
         {
-            return random.Next(1, 250);
+            return RandomBetween("JobsInBatch");
         }
 
         public static T RandomElement<T>(List<T> list)
         {
-            return list[random.Next(list.Count)];
+            return list[Rand.Next(list.Count)];
         }
 
+        private static int RandomBetween(string CurrentKey)
+        {
+            string CurrentValue = Dict[CurrentKey];
+            int Index = CurrentValue.IndexOf(',');
+            int StartValue = GetValueFromProperty(CurrentValue.Substring(0, Index).Trim());
+            int EndValue = GetValueFromProperty(CurrentValue.Substring(Index + 1).Trim());
+            return Rand.Next(StartValue, EndValue);
+        }
+
+        private static int GetValueFromProperty(string CurrentValue)
+        {
+            if (int.TryParse(CurrentValue, out int OutValue))
+            {
+                return OutValue;
+            }
+            return int.Parse(CurrentValue.Substring(0, CurrentValue.Length - 1)) * TimeUtils.SecIn(CurrentValue.Substring(CurrentValue.Length - 1));
+        }
     }
 }

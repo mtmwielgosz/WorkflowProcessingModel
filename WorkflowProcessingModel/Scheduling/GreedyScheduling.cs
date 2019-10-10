@@ -15,7 +15,7 @@ namespace WorkflowProcessingModel.Algorithm
             OptimisationObjective CurrentOptimisationObjective)
         {
             DateTime startingWholeProcessingDate = TimeUtils.GetDateTime("01.01.2020 06:00:00");
-            ModelAssociation CurrentModelAssocation = ModelAssociationFactory.GenerateComplexProductionWithFamiliesFor(startingWholeProcessingDate, 100, 15, 20, 50, 6);
+            ModelAssociation CurrentModelAssocation = ModelAssociationFactory.GenerateSmallScaleProductionWithoutFamiliesFor(startingWholeProcessingDate, 100, 2, 20, 50);
             List<Operation> AllOperations = SchedulingUtlis.GetAllOperations(CurrentModelAssocation.AllBatches);
             AllOperations.Sort((operation1, operation2) => operation1.CurrentBatch.DueDate.CompareTo(operation2.CurrentBatch.DueDate));
 

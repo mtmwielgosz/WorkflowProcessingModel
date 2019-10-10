@@ -15,7 +15,7 @@ namespace WorkflowProcessingModel.Factory
                     int TimeNeededToMove = 0;
                     if (!FirstMachine.Equals(SecondMachine))
                     {
-                        TimeNeededToMove = RandomGenerator.MoveTimeNeededToMove();
+                        TimeNeededToMove = RandomGenerator.TimeNeededToMoveBetweenMachines();
                     }
                     AllMoves.Add(new Move(FirstMachine, SecondMachine, TimeNeededToMove));
                     AllMoves.Add(new Move(SecondMachine, FirstMachine, TimeNeededToMove));
