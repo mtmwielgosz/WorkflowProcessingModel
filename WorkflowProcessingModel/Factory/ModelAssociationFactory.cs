@@ -6,7 +6,7 @@ using WorkflowProcessingModel.Model.SubElements;
 
 namespace WorkflowProcessingModel.Factory
 {
-    class ModelAssociationFactory
+    public class ModelAssociationFactory
     {
         public static ModelAssociation GenerateComplexProductionWithFamiliesFor(DateTime startProcessingDate, int materialsQuantity, int machinesQuantity, int jobsQuantity, int operationsQuantity, int familiesQuantity)
         {
@@ -48,8 +48,8 @@ namespace WorkflowProcessingModel.Factory
             }
             else
             {
-                CurrentMachines = MachineFactory.GenerateComplexProductionFor(startProcessingDate, machinesQuantity);
-                CurrentOperations = OperationFactory.GenerateComplexProductionFor(CurrentMachines, CurrentMaterials, null, null, operationsQuantity);
+                CurrentMachines = MachineFactory.GenerateSmallScaleProductionFor(startProcessingDate, machinesQuantity);
+                CurrentOperations = OperationFactory.GenerateSmallScaleProductionFor(CurrentMachines, CurrentMaterials, null, null, operationsQuantity);
                 CurrentJobs = JobFactory.GenerateSmallScaleProductionFor(CurrentOperations, null, operationsQuantity);
             }
             List<Batch> CurrentBatches;

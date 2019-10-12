@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using WorkflowProcessingModel.Algorithm.Results;
 using WorkflowProcessingModel.Model;
 
@@ -16,6 +17,6 @@ namespace WorkflowProcessingModel.Algorithm
         /// <param name="CurrentOptimisationObjective">γ – the objective to be minimized - often contains a single entry.</param>
         /// <returns>The result of optimisation.</returns>
         ResultAssociation Schedule(ModelAssociation CurrentModel, MachineEnvironment CurrentMachineEnvironment,
-            List<Constraint> CurrentConstraints, OptimisationObjective CurrentOptimisationObjective);
+            List<Constraint> CurrentConstraints, OptimisationObjective CurrentOptimisationObjective, DateTime startingWholeProcessingDate);
     }
 }

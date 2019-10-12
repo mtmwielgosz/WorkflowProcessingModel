@@ -7,8 +7,8 @@ namespace WorkflowProcessingModel.Algorithm
 {
     class GenericAlgorithmScheduling : IScheduling
     {
-        // TODO implement
-        public ResultAssociation Schedule(ModelAssociation CurrentModel, MachineEnvironment CurrentMachineEnvironment, List<Constraint> CurrentConstraints, OptimisationObjective CurrentOptimisationObjective)
+
+        public ResultAssociation Schedule(ModelAssociation CurrentModel, MachineEnvironment CurrentMachineEnvironment, List<Constraint> CurrentConstraints, OptimisationObjective CurrentOptimisationObjective, DateTime startingWholeProcessingDate)
         {
             throw new NotImplementedException();
         }

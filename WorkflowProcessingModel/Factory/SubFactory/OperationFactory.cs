@@ -34,7 +34,7 @@ namespace WorkflowProcessingModel.Factory.SubFactory
 
                 int numberOfMachines = RandomGenerator.MachinesInOperation();
                 Dictionary<Machine, int> CurrentCapableMachinesWithProductionTime = new Dictionary<Machine, int>();
-                for (int MachineIindex = 0; MachineIindex < numberOfMachines; MachineIindex++)
+                for (int MachineIndex = 0; MachineIndex < numberOfMachines && MachineIndex < allMachines.Count; MachineIndex++)
                 {
                     CollectionUtils.AddUniqeElementToDictionary(CurrentCapableMachinesWithProductionTime, allMachines, RandomGenerator.ProductionTimeForMachinesInOperation());
                 }

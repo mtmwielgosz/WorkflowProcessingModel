@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace WorkflowProcessingModel.Factory
 {
-    class TimeUtils
+    public class TimeUtils
     {
         public const int SecInMinute = 60;
         public const int SecInHour = 60 * SecInMinute;
