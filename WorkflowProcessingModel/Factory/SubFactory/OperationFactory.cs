@@ -27,7 +27,7 @@ namespace WorkflowProcessingModel.Factory.SubFactory
             {
                 int numberOfMaterials = RandomGenerator.MaterialsInOperation();
                 Dictionary<Material, int> CurrentMaterialsDemand = new Dictionary<Material, int>();
-                for (int MaterialIindex = 0; MaterialIindex < numberOfMaterials; MaterialIindex++)
+                for (int MaterialIndex = 0; MaterialIndex < numberOfMaterials && MaterialIndex < allMaterials.Count; MaterialIndex++)
                 {
                     CollectionUtils.AddUniqeElementToDictionary(CurrentMaterialsDemand, allMaterials, RandomGenerator.MaterialsDemandInOperation());
                 }
