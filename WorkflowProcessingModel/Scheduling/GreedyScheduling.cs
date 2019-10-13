@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using WorkflowProcessingModel.Algorithm.Results;
+using WorkflowProcessingModel.Factory;
+using WorkflowProcessingModel.Factory.SubFactory;
 using WorkflowProcessingModel.Model;
 using WorkflowProcessingModel.Model.SubElements;
 using WorkflowProcessingModel.Scheduling.Utils;
@@ -34,10 +36,32 @@ namespace WorkflowProcessingModel.Algorithm
                     StartProcessingDate = StartProcessingDate.AddSeconds(CurrentSetupForBatch.SetupTime);
                 }
 
-                // Generate next Operation-Machine Association 
+                // Calculate processing time
                 int NeededProcessingTime = CurrentOperation.CapableMachinesWithProcessingTime[ChosenMachine] * CurrentOperation.CurrentBatch.NumberOfJobs;
-                DateTime FinishProcessingDate = StartProcessingDate.AddSeconds(NeededProcessingTime);
+
+                // Include maintenance
+                DateTime FinishProcessingDate = StartProcessingDate;
+                while (NeededProcessingTime > ChosenMachine.TimeLeftTillMaintenance)
+                {
+                    // Operation before maintenance
+                    FinishProcessingDate = FinishProcessingDate.AddSeconds(ChosenMachine.TimeLeftTillMaintenance);
+                    CurrentOperationMachineAssociations.Add
+                        (new OperationMachineAssignment(CurrentOperation, ChosenMachine, StartProcessingDate, FinishProcessingDate));
+                    NeededProcessingTime -= ChosenMachine.TimeLeftTillMaintenance;
+                    StartProcessingDate = FinishProcessingDate;
+
+                    // Maintenance
+                    FinishProcessingDate = StartProcessingDate.AddSeconds(ChosenMachine.TimeOfMaintenance);
+                    CurrentOperationMachineAssociations.Add
+                        (new OperationMachineAssignment(OperationFactory.generateMaintenance(), ChosenMachine, StartProcessingDate, FinishProcessingDate));
+                    ChosenMachine.TimeLeftTillMaintenance = RandomGenerator.MachineTimeLeftTillMaintenanceForSmallScaleProduction();
+                    StartProcessingDate = FinishProcessingDate;
+                }
+
+                // Operation
+                FinishProcessingDate = FinishProcessingDate.AddSeconds(NeededProcessingTime);
                 CurrentOperationMachineAssociations.Add(new OperationMachineAssignment(CurrentOperation, ChosenMachine, StartProcessingDate, FinishProcessingDate));
+                ChosenMachine.TimeLeftTillMaintenance -= NeededProcessingTime;
 
                 // Update dates for the machine
                 ChosenMachine.NextAvailableStartProcessingDate = FinishProcessingDate;

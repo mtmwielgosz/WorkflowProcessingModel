@@ -2,6 +2,7 @@
 using System.Linq;
 using WorkflowProcessingModel.Factory.Utils;
 using WorkflowProcessingModel.Model;
+using WorkflowProcessingModel.Model.SubElement;
 using WorkflowProcessingModel.Model.SubElements;
 
 namespace WorkflowProcessingModel.Factory.SubFactory
@@ -42,7 +43,7 @@ namespace WorkflowProcessingModel.Factory.SubFactory
                 CurrentCapableMachines = new List<Machine>(CurrentCapableMachinesWithProductionTime.Keys);
 
                 AllOperations.Add(new Operation(OperationIndex, "Operation" + OperationIndex, CurrentMaterialsDemand, CurrentCapableMachinesWithProductionTime, null,
-                    MoveFactory.GenerateFor(CurrentCapableMachines), currentBatch, currentJob)); // no setup times yet
+                    MoveFactory.GenerateFor(CurrentCapableMachines), currentBatch, currentJob, RandomGenerator.ColorForChart())); // no setup times yet
             }
 
             foreach (Operation CurrentOperation in AllOperations)
@@ -72,6 +73,11 @@ namespace WorkflowProcessingModel.Factory.SubFactory
             }
 
             return AllOperations;
+        }
+
+        public static Maintenance generateMaintenance()
+        {
+            return new Maintenance();
         }
     }
 }

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 
 namespace WorkflowProcessingModel.Factory
 {
-    class RandomGenerator  
+    class RandomGenerator
     {
         private static Random Rand = new Random();
         private static readonly Dictionary<string, string> Dict = ReadDictionaryFile("C:\\Users\\Mateusz\\source\\repos\\WorkflowProcessingModel\\WorkflowProcessingModel\\Properties\\Parameters.properties");
@@ -130,6 +131,11 @@ namespace WorkflowProcessingModel.Factory
         public static T RandomElement<T>(List<T> list)
         {
             return list[Rand.Next(list.Count)];
+        }
+
+        public static Color ColorForChart()
+        {
+            return Color.FromArgb(Rand.Next(0, 255), Rand.Next(0, 255), Rand.Next(0, 255));
         }
 
         private static int RandomBetween(string CurrentKey)

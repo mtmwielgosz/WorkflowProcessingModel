@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using WorkflowProcessingModel.Model.SubElements;
 
 namespace WorkflowProcessingModel.Model
@@ -14,24 +14,26 @@ namespace WorkflowProcessingModel.Model
         public List<Move> TimesOfMovingSemiproducts { get; set; }
         public Batch CurrentBatch { get; set; }
         public Job CurrentJob { get; set; }
+        public Color GanntChartColor { get; set; }
 
         public Operation(int index, string name, Dictionary<Material, int> materialsDemand, Dictionary<Machine, int> capableMachinesWithProductionTime, List<SetupForBatch> setupTimes,
-            List<Move> timesOfMovingSemiproducts, Batch currentBatch, Job currentJob)
+            List<Move> timesOfMovingSemiproducts, Batch currentBatch, Job currentJob, Color ganntChartColor)
         {
             Index = index;
             Name = name;
-            MaterialsDemand = materialsDemand ?? throw new ArgumentNullException(nameof(materialsDemand));
-            CapableMachinesWithProcessingTime = capableMachinesWithProductionTime ?? throw new ArgumentNullException(nameof(capableMachinesWithProductionTime));
+            MaterialsDemand = materialsDemand;
+            CapableMachinesWithProcessingTime = capableMachinesWithProductionTime;
             SetupTimes = setupTimes;
-            TimesOfMovingSemiproducts = timesOfMovingSemiproducts ?? throw new ArgumentNullException(nameof(timesOfMovingSemiproducts));
+            TimesOfMovingSemiproducts = timesOfMovingSemiproducts;
             CurrentBatch = currentBatch;
             CurrentJob = currentJob;
+            GanntChartColor = ganntChartColor;
         }
 
         public Operation Clone(int jobIndex)
         {
             return new Operation(this.Index, this.Name + " - clone for Job with index " + jobIndex, this.MaterialsDemand,
-                this.CapableMachinesWithProcessingTime, this.SetupTimes, this.TimesOfMovingSemiproducts, this.CurrentBatch, this.CurrentJob);
+                this.CapableMachinesWithProcessingTime, this.SetupTimes, this.TimesOfMovingSemiproducts, this.CurrentBatch, this.CurrentJob, this.GanntChartColor);
         }
     }
 }
