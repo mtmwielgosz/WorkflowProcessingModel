@@ -40,10 +40,13 @@ namespace WorkflowProcessingModel.Factory
             }
 
             List<Operation> ChosenOperations = new List<Operation>();
-            for (int index = 0; index < NumberOfOperations; index++)
+            for (int Index = 0; Index < NumberOfOperations && Index < CloneOfOperations.Count; Index++)
             {
                 CollectionUtils.AddUniqeElementToList(ChosenOperations, CloneOfOperations);
             }
+
+            // Only first opration can be processed
+            ChosenOperations[0].IsReadyToProcess = true;
             return ChosenOperations;
         }
 

@@ -15,7 +15,7 @@ namespace WorkflowProcessingModel.Algorithm
         public ResultAssociation Schedule(ModelAssociation currentModelAssoscation, MachineEnvironment currentMachineEnvironment, List<Constraint> currentConstraints,
             OptimisationObjective currentOptimisationObjective, DateTime startingWholeProcessingDate)
         {
-            // Sort operations on nearest DueDate first
+            // Sort all operations on nearest Due Date first
             List<Operation> AllOperations = SchedulingUtlis.GetAllOperations(currentModelAssoscation.AllBatches);
             AllOperations.Sort((operation1, operation2) => operation1.CurrentBatch.DueDate.CompareTo(operation2.CurrentBatch.DueDate));
 

@@ -15,5 +15,15 @@ namespace WorkflowProcessingModel.Model
             ListOfOperations = listOfOperations ?? throw new ArgumentNullException(nameof(listOfOperations));
             CurrentBatch = currentBatch;
         }
+
+        public Operation GetNextOperation(Operation previousOperation)
+        {
+            int CurrentOperationIndex = ListOfOperations.IndexOf(previousOperation);
+            if (CurrentOperationIndex < ListOfOperations.Count)
+            {
+                return ListOfOperations[CurrentOperationIndex + 1];
+            }
+            return null;
+        }
     }
 }

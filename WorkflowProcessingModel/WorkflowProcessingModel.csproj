@@ -48,6 +48,7 @@
     <Compile Include="Factory\SubFactory\OperationFactory.cs" />
     <Compile Include="Factory\Utils\CollectionUtils.cs" />
     <Compile Include="Model\SubElement\Maintenance.cs" />
+    <Compile Include="Scheduling\GreedySequenceDependenceScheduling.cs" />
     <Compile Include="Scheduling\OptimalScheduling.cs" />
     <Compile Include="Scheduling\Utils\SchedulingUtlis.cs" />
     <Compile Include="Scheduling\VariableNeighborhoodSearchScheduling.cs" />

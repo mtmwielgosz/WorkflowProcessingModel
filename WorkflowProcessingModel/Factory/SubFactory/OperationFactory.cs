@@ -43,7 +43,7 @@ namespace WorkflowProcessingModel.Factory.SubFactory
                 CurrentCapableMachines = new List<Machine>(CurrentCapableMachinesWithProductionTime.Keys);
 
                 AllOperations.Add(new Operation(OperationIndex, "Operation" + OperationIndex, CurrentMaterialsDemand, CurrentCapableMachinesWithProductionTime, null,
-                    MoveFactory.GenerateFor(CurrentCapableMachines), currentBatch, currentJob, RandomGenerator.ColorForChart())); // no setup times yet
+                    MoveFactory.GenerateFor(CurrentCapableMachines), currentBatch, currentJob, false, RandomGenerator.ColorForChart())); // no setup times yet
             }
 
             foreach (Operation CurrentOperation in AllOperations)
