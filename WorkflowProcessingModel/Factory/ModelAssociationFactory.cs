@@ -44,13 +44,13 @@ namespace WorkflowProcessingModel.Factory
             {
                 CurrentMachines = MachineFactory.GenerateComplexProductionFor(startProcessingDate, machinesQuantity);
                 CurrentOperations = OperationFactory.GenerateComplexProductionFor(CurrentMachines, CurrentMaterials, null, null, operationsQuantity);
-                CurrentJobs = JobFactory.GenerateComplexProductionFor(CurrentOperations, null, operationsQuantity);
+                CurrentJobs = JobFactory.GenerateComplexProductionFor(CurrentOperations, null, jobsQuantity);
             }
             else
             {
                 CurrentMachines = MachineFactory.GenerateSmallScaleProductionFor(startProcessingDate, machinesQuantity);
                 CurrentOperations = OperationFactory.GenerateSmallScaleProductionFor(CurrentMachines, CurrentMaterials, null, null, operationsQuantity);
-                CurrentJobs = JobFactory.GenerateSmallScaleProductionFor(CurrentOperations, null, operationsQuantity);
+                CurrentJobs = JobFactory.GenerateSmallScaleProductionFor(CurrentOperations, null, jobsQuantity);
             }
             List<Batch> CurrentBatches;
             if (familiesQuantity > 0)

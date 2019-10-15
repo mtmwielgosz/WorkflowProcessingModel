@@ -19,7 +19,7 @@ namespace WorkflowProcessingModel.Model
         public Operation GetNextOperation(Operation previousOperation)
         {
             int CurrentOperationIndex = ListOfOperations.IndexOf(previousOperation);
-            if (CurrentOperationIndex < ListOfOperations.Count)
+            if (CurrentOperationIndex < ListOfOperations.Count - 1)
             {
                 return ListOfOperations[CurrentOperationIndex + 1];
             }

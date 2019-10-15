@@ -13,7 +13,7 @@ namespace WorkflowProcessingModel
 
 
             // TODO
-            IScheduling scheduling = new GreedyScheduling();
+            IScheduling scheduling = new GreedySchedulingSI();
 
             // TODO 
             // TODO aging effect

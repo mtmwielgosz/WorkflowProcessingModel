@@ -29,7 +29,7 @@ namespace WorkflowProcessingModel.Factory
                     ChosenFamily = RandomGenerator.RandomElement(allFamilies);
                 }
                 Batch GeneratedBatch = new Batch(CurrentJob.Index, "Batch" + CurrentJob.Index, RandomGenerator.DueDate(startProcessingDate),
-                    RandomGenerator.PunishmentPerDay(), CurrentJob, RandomGenerator.JobsInBatch(), ChosenFamily);
+                    RandomGenerator.PenaltyPerDay(), CurrentJob, RandomGenerator.JobsInBatch(), ChosenFamily);
                 FillBatchAndJobInformationInJobsAndOperations(GeneratedBatch);
                 AllBatches.Add(GeneratedBatch);
 

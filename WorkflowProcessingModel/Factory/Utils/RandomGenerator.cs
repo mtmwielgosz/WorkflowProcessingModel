@@ -48,6 +48,11 @@ namespace WorkflowProcessingModel.Factory
             return RandomBetween("MachineTimeLeftTillMaintenanceForSmallScaleProduction");
         }
 
+        public static int MachineAgingEffectPercentage()
+        {
+            return RandomBetween("MachineAgingEffectPercentage");
+        }
+
         public static int MachineTimeOfMaintenanceForComplexProduction()
         {
             return RandomBetween("MachineTimeOfMaintenanceForComplexProduction");
@@ -118,9 +123,9 @@ namespace WorkflowProcessingModel.Factory
             return startProcessingDate.AddDays(RandomBetween("DaysToProcessBatch"));
         }
 
-        public static int PunishmentPerDay()
+        public static int PenaltyPerDay()
         {
-            return RandomBetween("PunishmentPerDay");
+            return RandomBetween("PenaltyPerDay");
         }
 
         public static int JobsInBatch()

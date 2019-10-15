@@ -44,9 +44,6 @@ namespace WorkflowProcessingModel.Factory
             {
                 CollectionUtils.AddUniqeElementToList(ChosenOperations, CloneOfOperations);
             }
-
-            // Only first opration can be processed
-            ChosenOperations[0].IsReadyToProcess = true;
             return ChosenOperations;
         }
 
